@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button id="addBtn">
+                <i class="fa-solid fa-plus"></i> Add Task
+            </button>
+        </div>
+
+        <div class="section">
+            <h3>Active Tasks</h3>
+            <ul id="taskList"></ul>
+        </div>
+
+        <div class="section">
+            <h3 class="expired-title">Expired Zone (Older than 24h)</h3>
+            <ul id="expiredList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

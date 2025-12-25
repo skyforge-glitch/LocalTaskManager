@@ -1,0 +1,277 @@
+:root {
+    --primary: #f39c12;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --text: #2c3e50;
+    --bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    max-width: 500px;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 24px;
+    /* Glow effect using multiple shadows */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1), 
+                0 0 100px rgba(243, 156, 18, 0.1); 
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-top: 0;
+}
+
+.input-group {
+    background: #f1f3f5;
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#taskInput {
+    background: transparent;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    flex: 1;              /* ✅ THIS pushes the button fully right */
+}
+
+#taskInput:focus {
+    outline: none;
+}
+
+#addBtn {
+    background-color: var(--success);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+#addBtn:disabled {
+    background-color: #a7d7b8;   /* muted green */
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+}
+
+#addBtn i {
+    font-size: 14px;
+}
+
+#addBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+    z-index: 999;
+}
+
+.toast button {
+    background: none;
+    border: none;
+    color: #4ade80;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* List Item Styling */
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background: #ffffff;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid #f1f3f5;
+}
+
+li:hover {
+    transform: scale(1.01);
+    border-color: var(--primary);
+}
+
+/* Expired Zone Style */
+.expired-item {
+    background-color: #fff9f9;
+    border: 1px dashed #feb2b2;
+}
+
+.expired-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a0aec0;
+    margin-top: 30px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--success); /* Colors the checkbox green when ticked */
+}
+
+/* FIX Bug 4: Remove bullets and align content */
+ul {
+    list-style-type: none; /* Removes the dots */
+    padding: 0;
+    margin: 0;
+}
+
+li:has(.task-text.done) {
+    background: #f8fafc;
+}
+
+li.removing {
+    animation: fadeOut 0.2s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+
+.animate-in {
+    animation: slideIn 0.25s ease forwards;
+}
+
+.animate-check {
+    animation: pulse 0.2s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.task-text {
+    flex: 1; /* Makes the text take up all available space */
+    font-size: 18px;
+    transition: all 0.25s ease;
+}
+
+/* Completed task style */
+.task-text.done {
+    text-decoration: line-through;
+    color: #a0aec0;
+    opacity: 0.7;
+    transition: all 0.25s ease;
+}
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between checkbox and delete button */
+}
+
+.input-group {
+    border: 2px solid var(--primary); /* Matching the orange border from your image */
+    background: white;
+}
+
+.delete-btn, .readd-btn {
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    font-size: 18px;
+}
+
+.edit-input {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+}
+
+.delete-btn { color: var(--danger); }
+.delete-btn:hover { background: #fee2e2; transform: scale(1.1); }
+
+.readd-btn { color: #3498db; }
+.readd-btn:hover { background: #e0f2fe; transform: scale(1.1); }
+
+/* Stylish Checkbox */
+input[type="checkbox"] {
+    appearance: none; /* Hide default */
+    -webkit-appearance: none;
+    height: 22px;
+    width: 22px;
+    background-color: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="checkbox"]:after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: white;
+    display: none;
+}
+
+input[type="checkbox"]:checked { background-color: var(--success); }
+input[type="checkbox"]:checked:after { display: block; }
